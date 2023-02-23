@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Weapon : MonoBehaviour
@@ -10,14 +11,17 @@ public class Weapon : MonoBehaviour
     public LineRenderer lineRenderer;
     public RaycastHit2D hitInfo;
     public CharacterController2D characterController;
-    public Camera camShake;
+    public CameraShake cameraShake;
 
+    public GameObject muzzleFlash;
+    public float camShakeDuration= 5, camShakeMagnitude = 1;
     public int damage = 20;
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPetTap;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
 
+    public Text text;
     bool shooting, readyToShoot, reloading;
     private void Start()
     {
@@ -25,6 +29,11 @@ public class Weapon : MonoBehaviour
         readyToShoot = true;
     }
     void Update()
+    {
+        ShootSystem();
+        text.text = $"{bulletsLeft} / {magazineSize}";
+    }
+    private void ShootSystem()
     {
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -40,6 +49,7 @@ public class Weapon : MonoBehaviour
     }
     private void Shoot()
     {
+        Debug.Log("Shoot"); 
         readyToShoot = false;
         //Spread
         if (characterController.m_wasCrouching)
@@ -68,9 +78,15 @@ public class Weapon : MonoBehaviour
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
         }
         lineRenderer.enabled = true;
+        //Shake camera
+        StartCoroutine(cameraShake.Shake(camShakeDuration, camShakeMagnitude));
+
+        //Graphics
+        Instantiate(muzzleFlash, firePoint.position, Quaternion.identity);
 
         bulletsLeft--;
         bulletsShot--;
+        
         Invoke("ResetShot", timeBetweenShooting);
         if (bulletsShot > 0 && bulletsLeft > 0)
         {
