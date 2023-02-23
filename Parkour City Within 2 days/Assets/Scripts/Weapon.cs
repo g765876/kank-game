@@ -15,18 +15,39 @@ public class Weapon : MonoBehaviour
 
     public GameObject muzzleFlash;
     public float camShakeDuration= 5, camShakeMagnitude = 1;
-    public int damage = 20;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPetTap;
-    public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
-
     public Text text;
+
+    private int damage;
+    private float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
+    private int magazineSize, bulletsPetTap;
+    private bool allowButtonHold;
+    private int bulletsLeft, bulletsShot;
+
+    private WeaponData lastGun;
     bool shooting, readyToShoot, reloading;
     private void Start()
     {
         bulletsLeft = magazineSize;
         readyToShoot = true;
+    }
+    public void ChangeGun(WeaponData data)
+    {
+        if(lastGun != null)
+        {
+            lastGun.bulletsLeft = bulletsLeft;
+            lastGun.magazineSize = magazineSize;
+        }
+        damage = data.damage;
+        timeBetweenShooting = data.timeBetweenShooting;
+        spread = data.spread;
+        range = data.range;
+        reloadTime = data.reloadTime;
+        timeBetweenShooting = data.timeBetweenShooting;
+        magazineSize = data.magazineSize;
+        bulletsPetTap = data.bulletsPetTap;
+        allowButtonHold = data.allowButtonHold;
+        bulletsLeft = data.bulletsLeft;
+        lastGun = data;
     }
     void Update()
     {
@@ -49,15 +70,15 @@ public class Weapon : MonoBehaviour
     }
     private void Shoot()
     {
-        Debug.Log("Shoot"); 
+        float localSpread = spread;
         readyToShoot = false;
         //Spread
         if (characterController.m_wasCrouching)
         {
-            spread /= 1.5f;
+            localSpread = spread / 1.5f;
         }
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
+        float x = Random.Range(-localSpread, localSpread);
+        float y = Random.Range(-localSpread, localSpread);
         //Calculate direction
         Vector3 direction = firePoint.right + new Vector3(x, y, 0);
         //Raycast
@@ -82,7 +103,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(cameraShake.Shake(camShakeDuration, camShakeMagnitude));
 
         //Graphics
-        Instantiate(muzzleFlash, firePoint.position, Quaternion.identity);
+        Instantiate(muzzleFlash, firePoint.position, firePoint.rotation);
 
         bulletsLeft--;
         bulletsShot--;
@@ -92,7 +113,7 @@ public class Weapon : MonoBehaviour
         {
 
         }
-        Invoke("Shoot", timeBetweenShooting);
+        //Invoke("Shoot", timeBetweenShooting);
     }
     private void ResetShot()
     {

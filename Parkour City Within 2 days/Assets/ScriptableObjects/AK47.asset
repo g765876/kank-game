@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fd7d207ada2504198a0f7cab8a81cd, type: 3}
+  m_Name: AK47
+  m_EditorClassIdentifier: 
+  damage: 10
+  magazineSize: 7
+  timeBetweenShooting: 0.02
+  spread: 0.1
+  range: 200
+  reloadTime: 2
+  timeBetweenShots: 0
+  bulletsPetTap: 1
+  allowButtonHold: 0
+  bulletsLeft: 7
+  bulletsShot: 1

@@ -8,6 +8,7 @@ public class WeaponSwitch : MonoBehaviour
     public int weaponOpened = 0;
     public WeaponAiming weaponAiming;
     public Weapon weapon;
+    public WeaponData[] weaponDatas;
     void Start()
     {
         SelectWeapon();
@@ -72,6 +73,7 @@ public class WeaponSwitch : MonoBehaviour
         {
             if (i == weaponSwitch)
             {
+                weapon.ChangeGun(weaponDatas[i]);
                 GameObject selectedWeapon = transform.GetChild(i).gameObject;
                 GameObject firePoint = selectedWeapon.transform.Find("FirePoint").gameObject;
                 selectedWeapon.SetActive(true);

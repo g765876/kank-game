@@ -7,7 +7,7 @@ public class CameraShake : MonoBehaviour
   public IEnumerator Shake(float duration, float magnitude) {
         Vector3 originalPos = transform.localPosition;
         float elapsed = 0f;
-
+        Debug.Log("Shake");
         while(elapsed < duration)
         {
             float x = Random.Range(-1f, 1f) * magnitude;
