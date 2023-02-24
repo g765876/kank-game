@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03fd7d207ada2504198a0f7cab8a81cd, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
-  damage: 10
-  magazineSize: 7
-  timeBetweenShooting: 0.02
-  spread: 0.1
+  damage: 25
+  magazineSize: 30
+  timeBetweenShooting: 0.05
+  spread: 0.2
   range: 200
   reloadTime: 2
   timeBetweenShots: 0
   bulletsPetTap: 1
-  allowButtonHold: 0
-  bulletsLeft: 7
+  allowButtonHold: 1
+  bulletsLeft: 6
   bulletsShot: 1
+  cameraShakeDuration: 1
+  cameraShakeMagnitude: 1

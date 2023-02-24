@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd32e214fc6a28a40841bc1d8b41645e
+guid: 8020e09df26fa7c419967f68a4d5a95d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -129,49 +129,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Ak-47-Magazine
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 15
-        width: 104
-        height: 98
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37c979a24d942c840813b7164b30a9f3
-      internalID: 453500495
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ak-47-Main
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 176
-        width: 576
-        height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62f5e7f55e39d92449078d1940699626
-      internalID: -2075083429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -182,9 +140,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Ak-47-Main: -2075083429
-      Ak-47-Magazine: 453500495
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

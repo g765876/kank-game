@@ -9,6 +9,7 @@ public class WeaponSwitch : MonoBehaviour
     public WeaponAiming weaponAiming;
     public Weapon weapon;
     public WeaponData[] weaponDatas;
+    public GameObject[] weaponObjects;
     void Start()
     {
         SelectWeapon();
@@ -51,16 +52,16 @@ public class WeaponSwitch : MonoBehaviour
             weaponSwitch = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            weaponSwitch = 2;
-        }
+        /* if (Input.GetKeyDown(KeyCode.Alpha3))
+         {
+             weaponSwitch = 2;
+         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            weaponSwitch = 3;
-        }
-
+         if (Input.GetKeyDown(KeyCode.Alpha4))
+         {
+             weaponSwitch = 3;
+         }
+        */
         if (currentWeapon != weaponSwitch)
         {
             SelectWeapon();
@@ -73,7 +74,9 @@ public class WeaponSwitch : MonoBehaviour
         {
             if (i == weaponSwitch)
             {
+                // weapon.reloading = false;
                 weapon.ChangeGun(weaponDatas[i]);
+                weapon.weaponObject = weaponObjects[i];
                 GameObject selectedWeapon = transform.GetChild(i).gameObject;
                 GameObject firePoint = selectedWeapon.transform.Find("FirePoint").gameObject;
                 selectedWeapon.SetActive(true);

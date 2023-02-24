@@ -5,8 +5,8 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class WeaponAiming : MonoBehaviour
 {
-    public Vector3 mousePos;
-    public Vector3 targetPos;
+    private Vector3 mousePos;
+    private Vector3 targetPos;
     public CharacterController2D characterController;
     public GameObject firePoint;
     public GameObject fakeAim;

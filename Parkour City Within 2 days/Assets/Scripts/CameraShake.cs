@@ -1,25 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraShake : MonoBehaviour
 {
-  public IEnumerator Shake(float duration, float magnitude) {
-        Vector3 originalPos = transform.localPosition;
-        float elapsed = 0f;
-        Debug.Log("Shake");
-        while(elapsed < duration)
+    [SerializeField] private CinemachineVirtualCamera cameraCinemachine;
+    private float shakeCameraTime;
+    private float shakeCameraTimeTotal;
+    private float startingIntensity;
+    public void Shake(float duration, float magnitude)
+    {
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cameraCinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = magnitude;
+
+        startingIntensity = magnitude;
+        shakeCameraTime = duration;
+        shakeCameraTimeTotal = duration;
+    }
+    private void Update()
+    {
+        if (shakeCameraTime > 0)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
+            shakeCameraTime -= Time.deltaTime;
 
-            transform.localPosition = new Vector3(x, y, originalPos.z);
 
-            elapsed += Time.deltaTime;
-
-            yield return null;
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cameraCinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0, 1 - (shakeCameraTime / shakeCameraTimeTotal));
         }
-
-        transform.localPosition = originalPos;
     }
 }
