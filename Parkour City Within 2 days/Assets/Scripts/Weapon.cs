@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Weapon : MonoBehaviour
 {
-    public GlobalEventManager GlobalEventManager;
+    //public GlobalEventManager GlobalEventManager;
 
     public Transform firePoint;
     public LineRenderer lineRenderer;
@@ -34,10 +34,6 @@ public class Weapon : MonoBehaviour
     bool shooting;
     bool readyToShoot = true;
     public bool reloading = false;
-    private void Awake()
-    {
-        GlobalEventManager.OnShoot += GlobalEventManager_OnShoot;
-    }
 
     private void GlobalEventManager_OnShoot(object sender, EventArgs e)
     {
@@ -82,7 +78,7 @@ public class Weapon : MonoBehaviour
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
             bulletsShot = bulletsPetTap;
-           // Shoot();
+            Shoot();
         }
     }
     private void Shoot()
@@ -131,7 +127,7 @@ public class Weapon : MonoBehaviour
         //Graphics
         Instantiate(muzzleFlash, firePoint.position, firePoint.rotation);
 
-        meshParticleSystem.AddQuad(firePoint.position);
+       meshParticleSystem.AddQuad(firePoint.position);
 
 
         bulletsLeft--;

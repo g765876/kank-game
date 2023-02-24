@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MeshParticleSystem : MonoBehaviour
 {
-    //public GlobalEventManager GlobalEventManager;
+   // public GlobalEventManager GlobalEventManager;
     private const int MAX_QUAD_AMOUNT = 15000;
     private Mesh mesh;
     private Vector3[] vertices;
@@ -28,6 +28,7 @@ public class MeshParticleSystem : MonoBehaviour
 
         GetComponent<MeshFilter>().mesh = mesh;
     }
+
 
     public void AddQuad(Vector3 position)
     {

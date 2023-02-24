@@ -6,11 +6,11 @@ using UnityEngine.Events;
 
 public class GlobalEventManager : MonoBehaviour
 {
-    public event EventHandler OnShoot;
+    public static event EventHandler OnShoot;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             OnShoot?.Invoke(this, EventArgs.Empty);
         }
